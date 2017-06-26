@@ -4,11 +4,17 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
+  has_many :authored_comments,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Comment
+
+
   has_many :moderated_subs,
     primary_key: :id,
     foreign_key: :user_id,
     class_name: :Sub
-    
+
   has_many :posts,
     primary_key: :id,
     foreign_key: :author_id,
