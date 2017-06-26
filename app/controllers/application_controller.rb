@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 
+  def require_logged_in
+    !current_user.nil?
+  end
+
 
 end
