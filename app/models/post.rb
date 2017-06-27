@@ -11,4 +11,6 @@ class Post < ApplicationRecord
 
   has_many :post_subs
   has_many :subs, through: :post_subs, source: :sub
+
+  
 end

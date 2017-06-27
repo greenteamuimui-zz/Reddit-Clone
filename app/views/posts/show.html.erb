@@ -5,8 +5,9 @@
 <br>
 <label>Content:</label>
 <%=@post.content%>
-
-<%= link_to "Edit Post", edit_post_url %>
+<br>
+<%= link_to "Edit Post", edit_post_url(@post) %>
+<br>
 <br>
 <label>Subs</label>
 <br>
@@ -16,12 +17,14 @@
 <% end %>
 </ul>
 
+
+<br>
+<%@post.comments.where(parent_comment_id:nil).each do |top_comment|  %>
+  <%= link_to top_comment.content, comment_url(top_comment.id)%>
+
+<% end %>
+<br>
+<br>
 <label>Comments</label>
 <br>
-<ul>
-<% @post.comments.each do |comment| %>
-  <li><%= comment.content %></li>
-<% end %>
-</ul>
-
-<%= link_to "Add Comment", new_post_comment_url(@post.id) %>
+<br>
